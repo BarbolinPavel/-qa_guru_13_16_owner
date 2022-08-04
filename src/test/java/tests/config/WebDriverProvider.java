@@ -36,7 +36,6 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     public WebDriver createDriver() {
 
         if (System.getProperty("host","local").equals("remote")) {
-
             switch (config.getBrowser()) {
                 case CHROME: {
                     RemoteWebDriver remoteChromeWebDriver = new RemoteWebDriver(config.getSelenoidUrl(), new ChromeOptions());
