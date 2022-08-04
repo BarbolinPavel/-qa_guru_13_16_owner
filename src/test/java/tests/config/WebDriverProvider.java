@@ -36,23 +36,8 @@ public class WebDriverProvider implements Supplier<WebDriver> {
 
     public WebDriver createDriver() {
 
-        if (Objects.isNull(config.getSelenoidUrl())) {
-            switch (config.getBrowser()) {
-                case CHROME: {
-                    WebDriverManager.chromedriver().setup();
-                    capabilities.setVersion(config.getVersionBrowser());
-                    return new ChromeDriver();
-                }
-                case FIREFOX: {
-                    WebDriverManager.firefoxdriver().setup();
-                    capabilities.setVersion(config.getVersionBrowser());
-                    return new FirefoxDriver();
-                }
-                default: {
-                    throw new RuntimeException("No such driver");
-                }
-            }
-        } else {
+        if (System.getProperty("host","local").equals("remote")) {
+
             switch (config.getBrowser()) {
                 case CHROME: {
                     RemoteWebDriver remoteChromeWebDriver = new RemoteWebDriver(config.getSelenoidUrl(), new ChromeOptions());
@@ -63,6 +48,22 @@ public class WebDriverProvider implements Supplier<WebDriver> {
                     RemoteWebDriver remoteFirefoxWebDriver = new RemoteWebDriver(config.getSelenoidUrl(), new FirefoxOptions());
                     capabilities.setVersion(config.getVersionBrowser());
                     return remoteFirefoxWebDriver;
+                }
+                default: {
+                    throw new RuntimeException("No such driver");
+                }
+            }
+        } else {
+            switch (config.getBrowser()) {
+                case CHROME: {
+                    WebDriverManager.chromedriver().setup();
+                    capabilities.setVersion(config.getVersionBrowser());
+                    return new ChromeDriver();
+                }
+                case FIREFOX: {
+                    WebDriverManager.firefoxdriver().setup();
+                    capabilities.setVersion(config.getVersionBrowser());
+                    return new FirefoxDriver();
                 }
                 default: {
                     throw new RuntimeException("No such driver");

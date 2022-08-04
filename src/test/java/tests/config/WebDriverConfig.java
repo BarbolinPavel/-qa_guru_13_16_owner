@@ -18,6 +18,7 @@ public interface WebDriverConfig extends Config{
     String getBrowser();
 
     @Key("remoteUrl")
+    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
     URL getSelenoidUrl();
 
     @Key("versionBrowser")
