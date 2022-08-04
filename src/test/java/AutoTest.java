@@ -26,5 +26,4 @@ public class AutoTest extends WebDriverProvider {
     public void stopDriver() {
         driver.quit();
     }
-
 }

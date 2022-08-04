@@ -10,7 +10,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
 import static com.codeborne.selenide.Browsers.CHROME;
