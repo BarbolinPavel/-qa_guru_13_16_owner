@@ -56,8 +56,8 @@ tasks.withType(Test) {
     }
 }
 
-task notification_test(type: Test){
+task properties_test(type: Test){
     useJUnitPlatform {
-        includeTags "test"
+        includeTags "owner_test"
     }
 }
